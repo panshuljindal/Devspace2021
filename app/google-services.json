@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "498592523263",
+    "project_id": "productivity-app-24ab3",
+    "storage_bucket": "productivity-app-24ab3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:498592523263:android:0449a7c67c50f23f607dca",
+        "android_client_info": {
+          "package_name": "com.panshul.devspace"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "498592523263-122l9grnp8j03mrajrps600joln8tovp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBS4lMVvTMtnubyncw6UJQcA-GUs18xDA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "498592523263-122l9grnp8j03mrajrps600joln8tovp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
