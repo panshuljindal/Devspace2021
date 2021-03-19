@@ -38,7 +38,7 @@ public class LoginPage extends AppCompatActivity {
         signup = findViewById(R.id.signupTextView);
         mauth = FirebaseAuth.getInstance();
         if (mauth.getCurrentUser()!=null){
-
+            startActivity(new Intent(LoginPage.this,MainActivity.class));
         }
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
