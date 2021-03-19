@@ -18,7 +18,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:menu="@menu/menu"
-        app:itemIconSize="28dp"/>
+        app:itemIconSize="32dp"/>
 
     <FrameLayout
         android:id="@+id/frameLayout"

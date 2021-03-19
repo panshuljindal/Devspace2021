@@ -1,14 +1,169 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TaskFragment">
+    android:background="#131313"
+    tools:context=".Fragments.TaskFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="#373636"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/ic_add"
+                app:layout_constraintEnd_toStartOf="@+id/imageView2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginBottom="19dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Devspace"
+                android:textColor="#fff"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="18dp"
+                android:src="@drawable/ic_person"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+        <TextView
+            android:id="@+id/fragmentTaskName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="40dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="Task Name"
+            android:textColor="#fff"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView" />
+
+        <EditText
+            android:id="@+id/editTextTextTaskName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:fontFamily="@font/inter_thin"
+            android:inputType="textPersonName"
+            android:text="Name"
+            android:textColor="#fff"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragmentTaskName" />
+
+        <TextView
+            android:id="@+id/fragmentTaskDesc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="Description"
+            android:textColor="#fff"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextTaskName" />
+
+        <EditText
+            android:id="@+id/editTextTextTaskDesc"
+            android:layout_width="355dp"
+            android:layout_height="129dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:fontFamily="@font/inter_thin"
+            android:inputType="textMultiLine"
+            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consequat convallis a amet, ultrices suspendisse duis. Eu, dignissim egestas lorem posuere. Enim vivamus lorem dui sed sagittis lorem lorem ante praesent. Diam pellentesque nam adipiscing quam adipiscing imperdiet amet suspendisse. Orci, fermentum scelerisque ullamcorper eleifend sit. Mauris, sollicitudin ipsum viverra quis accumsan."
+            android:textColor="#fff"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragmentTaskDesc" />
+
+        <TextView
+            android:id="@+id/fragmentPromodoroMin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="Promodoro Minutes"
+            android:textColor="#fff"
+            android:textSize="15dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextTaskDesc" />
+
+    <TextView
+        android:id="@+id/fragment25Minustes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/inter_thin"
+        android:text="25"
+        android:textColor="#fff"
+        android:textSize="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextTaskDesc"
+        tools:layout_editor_absoluteX="308dp" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="140dp"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="48dp"
+            android:background="#FF532D"
+            android:text="Schedule Task"
+            android:textColor="#131313"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragmentPromodoroMin" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

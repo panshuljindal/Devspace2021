@@ -9,47 +9,64 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        app:cardBackgroundColor="#131313"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="@drawable/task_background">
 
             <TextView
                 android:id="@+id/ItemTaskName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/inter_semibold"
                 android:text="Task Name"
-                android:textSize="23sp"
+                android:textColor="#fff"
+                android:textSize="20dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/ItemTaskContent"
-                android:layout_width="347dp"
-                android:layout_height="60dp"
-                android:layout_marginStart="40dp"
-                android:layout_marginLeft="40dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginLeft="25dp"
                 android:layout_marginTop="12dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginRight="25dp"
+                android:fontFamily="@font/inter_regular"
                 android:text="Task Content A modern general-purpose computer system consists of one or more CPUs and a number of device controllers connected through"
-                android:textSize="15sp"
+                android:textColor="#727272"
+                android:textSize="11dp"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/ItemTaskName" />
 
             <ImageView
                 android:id="@+id/ItemTimerImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="12dp"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="25dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/ItemTaskContent"
-                app:srcCompat="@drawable/ic_list"
+                app:srcCompat="@drawable/ic_timer"
                 tools:ignore="VectorDrawableCompat" />
 
             <TextView
@@ -58,34 +75,36 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="12dp"
-                android:text="TextView"
-                android:textSize="15sp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="50 min"
+                android:textColor="#ABABAB"
+                android:textSize="17dp"
                 app:layout_constraintStart_toEndOf="@+id/ItemTimerImage"
                 app:layout_constraintTop_toBottomOf="@id/ItemTaskContent" />
 
             <ImageView
                 android:id="@+id/ItemDeleteImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="195dp"
-                android:layout_marginLeft="195dp"
-                android:layout_marginTop="12dp"
-                app:layout_constraintStart_toEndOf="@+id/ItemTimerText"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/ItemTickImage"
                 app:layout_constraintTop_toBottomOf="@id/ItemTaskContent"
-                app:srcCompat="@drawable/ic_list"
+                app:srcCompat="@drawable/ic_delete"
                 tools:ignore="VectorDrawableCompat" />
 
             <ImageView
                 android:id="@+id/ItemTickImage"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="12dp"
-                app:layout_constraintStart_toEndOf="@+id/ItemDeleteImage"
-                app:layout_constraintTop_toBottomOf="@id/ItemTaskContent"
-                app:srcCompat="@drawable/ic_friends"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginRight="25dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ItemTaskContent"
+                app:srcCompat="@drawable/ic_check"
                 tools:ignore="VectorDrawableCompat" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

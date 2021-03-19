@@ -13,6 +13,7 @@ import com.panshul.devspace.Fragments.FriendsFragment;
 import com.panshul.devspace.Fragments.ListFragment;
 import com.panshul.devspace.Fragments.MusicFragment;
 import com.panshul.devspace.R;
+import com.panshul.devspace.Fragments.TaskFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 Fragment selectedfragment = null;
                 switch (item.getItemId()){
                     case R.id.navigation_list:
-                        selectedfragment = new ListFragment();
+                        selectedfragment = new TaskFragment();
                         break;
                     case R.id.navigation_clock:
                         selectedfragment = new ClockFragment();
