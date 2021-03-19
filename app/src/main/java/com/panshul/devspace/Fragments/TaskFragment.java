@@ -1,18 +1,39 @@
 package com.panshul.devspace.Fragments;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.google.android.gms.tasks.Task;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.panshul.devspace.Model.TaskModel;
 import com.panshul.devspace.R;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+
 public class TaskFragment extends Fragment {
-
-
+    View view;
+    ImageView delete,profile;
+    Button subtraction,addition,schedule;
+    EditText name,content;
+    TextView minutes;
+    public static List<TaskModel> list1;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +43,67 @@ public class TaskFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_task, container, false);
+        view= inflater.inflate(R.layout.fragment_task, container, false);
+        loadData();
+        findViewByIds();
+        onClickListeners();
+        return view;
     }
+    public void findViewByIds(){
+        delete = view.findViewById(R.id.deleteImageView);
+        profile = view.findViewById(R.id.profileImageView);
+        subtraction = view.findViewById(R.id.subtractionButton);
+        addition=view.findViewById(R.id.additionButton);
+        name = view.findViewById(R.id.editTextTextTaskName);
+        content = view.findViewById(R.id.taskDescription);
+        minutes = view.findViewById(R.id.fragment25Minustes);
+        schedule = view.findViewById(R.id.scheduleTaskButton);
+    }
+    public void onClickListeners(){
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ListFragment fragment = new ListFragment();
+                FragmentManager manager = ((FragmentActivity) v.getContext()).getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.replace(R.id.frameLayout, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+        schedule.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TaskModel model = new TaskModel(name.getText().toString(),content.getText().toString(),Integer.valueOf(minutes.getText().toString()),"false");
+                list1.add(model);
+                saveData();
+                ListFragment fragment = new ListFragment();
+                FragmentManager manager = ((FragmentActivity) v.getContext()).getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.replace(R.id.frameLayout, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
+    }
+    public void saveData(){
+        SharedPreferences preferences = view.getContext().getSharedPreferences("com.panshul.devspace.tasklist", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(list1);
+        editor.putString("taskList",json);
+        editor.apply();
+    }
+    public void loadData(){
+        SharedPreferences preferences = view.getContext().getSharedPreferences("com.panshul.devspace.tasklist",Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = preferences.getString("taskList","");
+        Type type = new TypeToken<ArrayList<TaskModel>>() {}.getType();
+        list1 =gson.fromJson(json,type);
+        if(list1==null){
+            list1 =new ArrayList<>();
+        }
+    }
+
 }

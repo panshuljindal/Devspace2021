@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                 Fragment selectedfragment = null;
                 switch (item.getItemId()){
                     case R.id.navigation_list:
-                        selectedfragment = new TaskFragment();
+                        selectedfragment = new ListFragment();
                         break;
                     case R.id.navigation_clock:
                         selectedfragment = new ClockFragment();
