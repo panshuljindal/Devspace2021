@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.panshul.devspace.Fragments.MusicFragment;
@@ -16,12 +17,14 @@ import com.panshul.devspace.R;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.MyViewHolder> {
 
     Context context;
     List<PlaylistModel> playList;
+    ArrayList<Integer>randomBack =new ArrayList<>();
     MusicFragment fragment;
 
     public SongsAdapter(Context context, List<PlaylistModel> playList, MusicFragment fragment) {
@@ -35,6 +38,13 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.MyViewHolder
         ConstraintLayout layout;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+
+            randomBack.add(R.drawable.gradient1);
+            randomBack.add(R.drawable.gradient2);
+            randomBack.add(R.drawable.gradient3);
+            randomBack.add(R.drawable.gradient4);
+            randomBack.add(R.drawable.gradient5);
+
 
             playListBy = itemView.findViewById(R.id.playListBy11);
             playListName = itemView.findViewById(R.id.playListName11);
@@ -56,6 +66,7 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.MyViewHolder
         PlaylistModel item = playList.get(position);
         holder.playListBy.setText(item.getPlayListBy());
         holder.playListName.setText(item.getPlayListName());
+        holder.layout.setBackground(ContextCompat.getDrawable(context,randomBack.get(position%5)));
     }
 
     @Override

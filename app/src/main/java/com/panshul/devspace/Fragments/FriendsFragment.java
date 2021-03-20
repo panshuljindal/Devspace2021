@@ -35,7 +35,7 @@ public class FriendsFragment extends Fragment {
         playList = new ArrayList<>();
         recyclerView = view.findViewById(R.id.playListRecyclerView);
         addData();
-        adapter();
+        //adapter();
 
 
         return view;
