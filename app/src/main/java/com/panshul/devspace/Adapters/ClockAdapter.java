@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -75,16 +76,21 @@ public class ClockAdapter extends RecyclerView.Adapter<ClockAdapter.MyViewHolder
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences preferences = context.getSharedPreferences("com.panshul.devspace.clock",Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("taskId",item.getTaskId());
-                editor.apply();
-                PomodoroFragment fragment = new PomodoroFragment();
-                FragmentManager manager = ((FragmentActivity) v.getContext()).getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.frameLayout, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                if (item.getIsCompleted()=="false") {
+                    SharedPreferences preferences = context.getSharedPreferences("com.panshul.devspace.clock", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("taskId", item.getTaskId());
+                    editor.apply();
+                    PomodoroFragment fragment = new PomodoroFragment();
+                    FragmentManager manager = ((FragmentActivity) v.getContext()).getSupportFragmentManager();
+                    FragmentTransaction transaction = manager.beginTransaction();
+                    transaction.replace(R.id.frameLayout, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }
+                else {
+                    Toast.makeText(context, "Task Already completed", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }

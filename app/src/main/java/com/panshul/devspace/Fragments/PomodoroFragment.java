@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.panshul.devspace.Model.TaskModel;
@@ -30,16 +32,17 @@ import java.util.List;
 public class PomodoroFragment extends Fragment {
 
     View view;
-    ImageView cancel,profile;
+    ImageView cancel;
     TextView timer,state,name;
     CountDownTimer countDownTimer;
-    private int quiztime=6000;
-    private int breaktime =3000;
-    public static int points;
-    public static String isTimerStarted;
+    private int quiztime=12000;
+    private int breaktime =9000;
+    DatabaseReference myref;
+    public int points;
+    public boolean isCompleted;
     List<TaskModel> taskList;
     SharedPreferences pref;
-    String taskId;
+    String taskId,uid;
     int sessions;
     int sess;
     int time,index;
@@ -55,9 +58,16 @@ public class PomodoroFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view= inflater.inflate(R.layout.fragment_pomodoro, container, false);
+
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        myref = db.getReference("Users");
+        isCompleted=false;
+
         SharedPreferences pref1 = view.getContext().getSharedPreferences("com.panshul.devspace.userdata",Context.MODE_PRIVATE);
         editor1 = pref1.edit();
-        points = Integer.valueOf(pref1.getString("points",""));
+        points = Integer.valueOf(pref1.getString("points","0"));
+        uid = pref1.getString("uid","");
+        Log.i("uid",uid);
         loadData();
         cancel = view.findViewById(R.id.clockCancelImageview);
         timer = view.findViewById(R.id.timerTextView);
@@ -118,14 +128,19 @@ public class PomodoroFragment extends Fragment {
             public void onFinish() {
                 sessions=sessions-1;
                 if (sessions==0){
-                    points=points+sess;
+                    isCompleted=true;
+                    points=points+1;
+                    myref.child(uid).child("points").setValue(String.valueOf(points));
+                    Log.i("Session End Point",String.valueOf(points));
                     editor1.putString("points",String.valueOf(points));
                     editor1.apply();
-                    Log.i("Points1",String.valueOf(points));
+
                     Toast.makeText(view.getContext(), "Task Completed", Toast.LENGTH_SHORT).show();
-                    taskList.remove(index);
+                    taskList.get(index).setIsCompleted("true");
+
                     saveData();
-                    TaskFragment fragment = new TaskFragment();
+
+                    ClockFragment fragment = new ClockFragment();
                     FragmentManager manager = ((FragmentActivity) view.getContext()).getSupportFragmentManager();
                     FragmentTransaction transaction = manager.beginTransaction();
                     transaction.replace(R.id.frameLayout, fragment);
@@ -135,9 +150,18 @@ public class PomodoroFragment extends Fragment {
 
                 }
                 else {
+                    isCompleted=true;
+                    points=points+1;
+                    myref.child(uid).child("points").setValue(String.valueOf(points));
+                    taskList.get(index).setIsCompleted("true");
+                    Log.i("Session Mid Point",String.valueOf(points));
+                    editor1.putString("points",String.valueOf(points));
+                    editor1.apply();
+                    Log.i("Points1",String.valueOf(points));
                     Toast.makeText(view.getContext(), "Next Session started", Toast.LENGTH_SHORT).show();
                     startTimer();
                 }
+
             }
         }.start();
     }
@@ -171,10 +195,16 @@ public class PomodoroFragment extends Fragment {
     public void onPause() {
         super.onPause();
         //Log.i("Pause","Pomodoro Fragment");
-        points=points-1;
-        editor1.putString("points",String.valueOf(points));
-        editor1.apply();
-        //Log.i("points",String.valueOf(points));
-        countDownTimer.cancel();
+        if (isCompleted){
+
+        }
+        else {
+            points = points - 1;
+            editor1.putString("points", String.valueOf(points));
+            editor1.apply();
+            myref.child(uid).child("points").setValue(points);
+            //Log.i("points",String.valueOf(points));
+            countDownTimer.cancel();
+        }
     }
 }

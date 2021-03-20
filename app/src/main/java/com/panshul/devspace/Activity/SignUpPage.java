@@ -62,7 +62,7 @@ public class SignUpPage extends AppCompatActivity {
                                             FirebaseUser user = mauth.getCurrentUser();
                                             String uid = user.getUid();
                                             myref.child(uid).child("name").setValue(name.getText().toString());
-                                            myref.child(uid).child("emailId").setValue(emailId.getText().toString());
+                                            myref.child(uid).child("email").setValue(emailId.getText().toString());
                                             myref.child(uid).child("phoneNumber").setValue(phoneNumber.getText().toString());
                                             myref.child(uid).child("uid").setValue(uid);
                                             myref.child(uid).child("fcm").setValue("null");
