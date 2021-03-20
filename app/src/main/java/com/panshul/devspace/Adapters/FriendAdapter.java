@@ -4,11 +4,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.panshul.devspace.Model.FriendsModel;
 import com.panshul.devspace.R;
 
@@ -26,11 +29,12 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.MyViewHold
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView name,score;
+        ImageView delete;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.frndName);
             score = itemView.findViewById(R.id.noOfSessions);
-
+            delete = itemView.findViewById(R.id.friendDeleteImage);
         }
     }
 
@@ -47,6 +51,14 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.MyViewHold
         FriendsModel item = list1.get(position);
         holder.name.setText(item.getName());
         holder.score.setText(item.getScore());
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseDatabase db = FirebaseDatabase.getInstance();
+                DatabaseReference myref = db.getReference("Room");
+
+            }
+        });
 
     }
 

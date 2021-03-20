@@ -52,15 +52,20 @@
 
                     <TextView
                         android:id="@+id/profilePhoneNumAns"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
                         android:layout_marginStart="12dp"
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="3dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginBottom="20dp"
                         android:fontFamily="@font/inter_regular"
                         android:text="9818648222"
                         android:textColor="#FFFFFF"
                         android:textSize="15dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/profilePhoneNum" />
 
@@ -117,16 +122,18 @@
                     <TextView
                         android:id="@+id/profileUserCodeAns"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_marginStart="12dp"
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="3dp"
                         android:layout_marginEnd="12dp"
                         android:layout_marginRight="12dp"
+                        android:layout_marginBottom="20dp"
                         android:fontFamily="@font/inter_regular"
                         android:text="1daefelsmlsdl2132"
                         android:textColor="#FFFFFF"
-                        android:textSize="15dp"
+                        android:textSize="14dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/profileUserCode" />
@@ -180,15 +187,20 @@
 
                     <TextView
                         android:id="@+id/profileEmailAns"
-                        android:layout_width="165dp"
-                        android:layout_height="46dp"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
                         android:layout_marginStart="12dp"
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="3dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginBottom="20dp"
                         android:fontFamily="@font/inter_regular"
                         android:text="panshuljindal@gmail.com"
                         android:textColor="#FFFFFF"
-                        android:textSize="15dp"
+                        android:textSize="14dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/profileEmail" />
 
@@ -219,16 +231,14 @@
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="164dp"
-                    android:layout_marginLeft="164dp"
                     android:layout_marginTop="19dp"
                     android:layout_marginBottom="19dp"
                     android:fontFamily="@font/inter_semibold"
                     android:text="Selfuel"
                     android:textColor="#fff"
-                    android:textSize="15dp"
+                    android:textSize="19dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageView2"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0" />
 
@@ -246,42 +256,54 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.0" />
 
+                <ImageView
+                    android:id="@+id/profileShareImageView"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="22dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_share" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="115dp"
+                    android:layout_marginLeft="115dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="18dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/textView"
+                    app:layout_constraintStart_toEndOf="@+id/profileBackButton"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/applogo" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <Button
                 android:id="@+id/profileLogoutButton"
                 android:layout_width="0dp"
                 android:layout_height="46dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
+                android:layout_marginStart="75dp"
+                android:layout_marginLeft="75dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginEnd="45dp"
-                android:layout_marginRight="45dp"
+                android:layout_marginEnd="75dp"
+                android:layout_marginRight="75dp"
                 android:layout_marginBottom="40dp"
                 android:background="@drawable/task_button_background"
                 android:fontFamily="@font/inter_semibold"
                 android:text="Logout"
                 android:textAllCaps="false"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/profileChangePwdButton"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView2"
                 app:layout_constraintVertical_bias="0.0" />
-
-            <Button
-                android:id="@+id/profileChangePwdButton"
-                android:layout_width="200dp"
-                android:layout_height="46dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:background="@drawable/empty_button"
-                android:fontFamily="@font/inter_semibold"
-                android:text="Change Password"
-                android:textAllCaps="false"
-                android:textColor="#fff"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewPoints"
@@ -326,6 +348,8 @@
                         android:layout_marginStart="12dp"
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="30dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_marginRight="5dp"
                         android:fontFamily="@font/inter_semibold"
                         android:text="20"
                         android:textColor="#dddddd"
@@ -337,14 +361,16 @@
                     <TextView
                         android:id="@+id/profilePointsContent"
                         android:layout_width="166dp"
-                        android:layout_height="95dp"
+                        android:layout_height="0dp"
                         android:layout_marginTop="33dp"
                         android:layout_marginEnd="12dp"
                         android:layout_marginRight="12dp"
+                        android:layout_marginBottom="33dp"
                         android:fontFamily="@font/inter_regular"
                         android:gravity="center"
                         android:text="1 Session = 1 Point Earn more pomodoro points by completing tasks. Leave a session in between, lose a point."
                         android:textColor="#ABABAB"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -387,16 +413,18 @@
                     <TextView
                         android:id="@+id/profileNameAns"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_marginStart="12dp"
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="3dp"
                         android:layout_marginEnd="12dp"
                         android:layout_marginRight="12dp"
+                        android:layout_marginBottom="20dp"
                         android:fontFamily="@font/inter_regular"
                         android:text="Panshul Jindal"
                         android:textColor="#FFFFFF"
                         android:textSize="15dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/profileName" />

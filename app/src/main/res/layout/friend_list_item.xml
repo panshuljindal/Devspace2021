@@ -59,7 +59,7 @@
                 app:layout_constraintTop_toBottomOf="@id/frndName" />
 
             <ImageView
-                android:id="@+id/clockDeleteImage"
+                android:id="@+id/friendDeleteImage"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:layout_marginTop="10dp"

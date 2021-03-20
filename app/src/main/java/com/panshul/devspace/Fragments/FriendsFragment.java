@@ -1,11 +1,13 @@
 package com.panshul.devspace.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,6 +25,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.panshul.devspace.Activity.Profile_Page;
 import com.panshul.devspace.Adapters.FriendAdapter;
 import com.panshul.devspace.Model.FriendsModel;
 import com.panshul.devspace.Model.PlaylistModel;
@@ -41,7 +45,7 @@ public class FriendsFragment extends Fragment {
     SharedPreferences pref;
     List<String> uids;
     DatabaseReference myref,myref1;
-
+    ImageView add,profile;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,16 +57,40 @@ public class FriendsFragment extends Fragment {
         view= inflater.inflate(R.layout.fragment_friends, container, false);
         uids = new ArrayList<>();
         friendsList = new ArrayList<>();
-        pref = view.getContext().getSharedPreferences("com.panshul.devspace.userdata", Context.MODE_PRIVATE);
 
         recyclerView = view.findViewById(R.id.friendRecyclerView);
+        add = view.findViewById(R.id.friendsAddImageview);
+        profile = view.findViewById(R.id.profile7);
+        pref = view.getContext().getSharedPreferences("com.panshul.devspace.userdata", Context.MODE_PRIVATE);
 
+
+
+        onClickListeners();
         loadData();
         addData();
         adapter();
 
 
         return view;
+    }
+    public void onClickListeners(){
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Dialog dialog = new Dialog();
+                dialog.show( getFragmentManager(),"fragment");
+            }
+        });
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(view.getContext(), Profile_Page.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
+
     }
     public void addData(){
         String uid = pref.getString("uid","");
@@ -72,6 +100,7 @@ public class FriendsFragment extends Fragment {
         myref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                uids.clear();
                 for (DataSnapshot ds:snapshot.getChildren()){
                     UidModel model = ds.getValue(UidModel.class);
                     String uid1 = model.getUid();
@@ -80,6 +109,7 @@ public class FriendsFragment extends Fragment {
                 myref1.addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        friendsList.clear();
                         for (String uid2:uids){
                             String name = snapshot.child(uid2).child("name").getValue().toString();
                             String score = snapshot.child(uid2).child("points").getValue().toString();
