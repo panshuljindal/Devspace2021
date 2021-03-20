@@ -33,6 +33,7 @@ public class LoginPage extends AppCompatActivity {
     String passwordId,emailId;
     FirebaseAuth mauth;
     DatabaseReference myref;
+    String uid;
     SharedPreferences.Editor editor;
     TextView signup;
     @Override
@@ -52,8 +53,13 @@ public class LoginPage extends AppCompatActivity {
         editor = pref.edit();
 
         mauth = FirebaseAuth.getInstance();
-        if (mauth.getCurrentUser()!=null){
-            startActivity(new Intent(LoginPage.this,MainActivity.class));
+        if(mauth.getCurrentUser()!=null){
+            FirebaseUser user = mauth.getCurrentUser();
+            uid = user.getUid();
+            datasave();
+            Intent intent = new Intent(LoginPage.this,MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
         }
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,10 +102,10 @@ public class LoginPage extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 FirebaseUser user = mauth.getCurrentUser();
-                String uid = user.getUid();
+                uid = user.getUid();
 
                 editor.putString("uid",uid);
-                String emaili = snapshot.child(uid).child("emailId").getValue().toString();
+                String emaili = snapshot.child(uid).child("email").getValue().toString();
                 editor.putString("emailId", emaili);
 
                 String fcm = snapshot.child(uid).child("fcm").getValue().toString();

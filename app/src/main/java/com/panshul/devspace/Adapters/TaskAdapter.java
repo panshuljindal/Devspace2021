@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -68,6 +69,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
         holder.name.setText(item.getTaskName());
         holder.info.setText(item.getTaskContent());
         holder.timer.setText(item.getTime() +" min");
+        if (item.getIsCompleted()=="false"){
+            holder.check.setVisibility(View.INVISIBLE);
+        }
+        else {
+            holder.check.setVisibility(View.VISIBLE);
+        }
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,16 +89,20 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SharedPreferences preferences = context.getSharedPreferences("com.panshul.devspace.taskId",Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor =preferences.edit();
-                editor.putString("taskSpecificId",item.getTaskId());
-                editor.apply();
-                TaskFragment fragment = new TaskFragment();
-                FragmentManager manager = ((FragmentActivity) v.getContext()).getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.frameLayout, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                if (item.getIsCompleted()=="false") {
+                    SharedPreferences preferences = context.getSharedPreferences("com.panshul.devspace.taskId", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString("taskSpecificId", item.getTaskId());
+                    editor.apply();
+                    TaskFragment fragment = new TaskFragment();
+                    FragmentManager manager = ((FragmentActivity) v.getContext()).getSupportFragmentManager();
+                    FragmentTransaction transaction = manager.beginTransaction();
+                    transaction.replace(R.id.frameLayout, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }else {
+                    Toast.makeText(context, "Task Already Completed", Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
