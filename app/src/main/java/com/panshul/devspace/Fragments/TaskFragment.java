@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,7 @@ public class TaskFragment extends Fragment {
     Button subtraction,addition,schedule;
     EditText name,content;
     TextView minutes;
+    int index;
     public static List<TaskModel> list1;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,10 +48,38 @@ public class TaskFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view= inflater.inflate(R.layout.fragment_task, container, false);
+        index=-1;
+
         loadData();
         findViewByIds();
+        checkData();
         onClickListeners();
         return view;
+    }
+    public void checkData(){
+        SharedPreferences preferences = view.getContext().getSharedPreferences("com.panshul.devspace.taskId",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        String taskId=preferences.getString("taskSpecificId","");
+        if (taskId.length()==0){
+            Log.i("TaskId",taskId);
+            content.setText("");
+            name.setText("");
+        }
+        else {
+            Log.i("TaskId2",taskId);
+            for (int i=0;i<list1.size();i++){
+                Log.i("taskIds",list1.get(i).getTaskId());
+                if (taskId.equals(list1.get(i).getTaskId())){
+                    index=i;
+                    Log.i("Index",String.valueOf(i));
+                    name.setText(list1.get(i).getTaskName().toString());
+                    content.setText(list1.get(i).getTaskContent().toString());
+                    editor.putString("taskSpecificId","");
+                    editor.apply();
+                    break;
+                }
+            }
+        }
     }
     public void findViewByIds(){
         delete = view.findViewById(R.id.deleteImageView);
@@ -77,16 +107,30 @@ public class TaskFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 if (checkEmpty()) {
-                    String uniqueId = UUID.randomUUID().toString();
-                    TaskModel model = new TaskModel(name.getText().toString(), content.getText().toString(), Integer.valueOf(minutes.getText().toString()), "false", uniqueId);
-                    list1.add(model);
-                    saveData();
-                    ListFragment fragment = new ListFragment();
-                    FragmentManager manager = ((FragmentActivity) v.getContext()).getSupportFragmentManager();
-                    FragmentTransaction transaction = manager.beginTransaction();
-                    transaction.replace(R.id.frameLayout, fragment);
-                    transaction.addToBackStack(null);
-                    transaction.commit();
+                    if (index==-1) {
+                        String uniqueId = UUID.randomUUID().toString();
+                        TaskModel model = new TaskModel(name.getText().toString(), content.getText().toString(), Integer.valueOf(minutes.getText().toString()), "false", uniqueId);
+                        list1.add(model);
+                        saveData();
+                        ListFragment fragment = new ListFragment();
+                        FragmentManager manager = ((FragmentActivity) v.getContext()).getSupportFragmentManager();
+                        FragmentTransaction transaction = manager.beginTransaction();
+                        transaction.replace(R.id.frameLayout, fragment);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                    }
+                    else {
+                        list1.get(index).setTaskContent(content.getText().toString());
+                        list1.get(index).setTaskName(name.getText().toString());
+                        list1.get(index).setTime(Integer.valueOf(minutes.getText().toString()));
+                        saveData();
+                        ListFragment fragment = new ListFragment();
+                        FragmentManager manager = ((FragmentActivity) v.getContext()).getSupportFragmentManager();
+                        FragmentTransaction transaction = manager.beginTransaction();
+                        transaction.replace(R.id.frameLayout, fragment);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                    }
                 }
             }
         });
