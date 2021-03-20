@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -15,8 +16,13 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.panshul.devspace.R;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,19 +32,34 @@ public class LoginPage extends AppCompatActivity {
     Button login;
     String passwordId,emailId;
     FirebaseAuth mauth;
+    DatabaseReference myref;
+    String uid;
+    SharedPreferences.Editor editor;
     TextView signup;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_page);
 
-        password = findViewById(R.id.editTextTextPersonLoginPwd);
-        email = findViewById(R.id.editTextTextLoginName);
+        password = findViewById(R.id.loginPassword);
+        email = findViewById(R.id.loginEmail);
         login = findViewById(R.id.loginButton);
-        signup = findViewById(R.id.signupTextView);
+        signup = findViewById(R.id.loginToSignup);
+
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        myref = db.getReference("Users");
+
+        SharedPreferences pref = getSharedPreferences("com.panshul.devspace.userdata",MODE_PRIVATE);
+        editor = pref.edit();
+
         mauth = FirebaseAuth.getInstance();
-        if (mauth.getCurrentUser()!=null){
-            startActivity(new Intent(LoginPage.this,MainActivity.class));
+        if(mauth.getCurrentUser()!=null){
+            FirebaseUser user = mauth.getCurrentUser();
+            uid = user.getUid();
+            datasave();
+            Intent intent = new Intent(LoginPage.this,MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
         }
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,7 +98,37 @@ public class LoginPage extends AppCompatActivity {
 
     }
     public void datasave(){
+        myref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                FirebaseUser user = mauth.getCurrentUser();
+                uid = user.getUid();
 
+                editor.putString("uid",uid);
+                String emaili = snapshot.child(uid).child("email").getValue().toString();
+                editor.putString("emailId", emaili);
+
+                String fcm = snapshot.child(uid).child("fcm").getValue().toString();
+                editor.putString("fcm", fcm);
+
+                String name = snapshot.child(uid).child("name").getValue().toString();
+                editor.putString("name", name);
+
+                String phone = snapshot.child(uid).child("phoneNumber").getValue().toString();
+                editor.putString("phone", phone);
+
+                String points = snapshot.child(uid).child("points").getValue().toString();
+                editor.putString("points", points);
+
+                editor.apply();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
     public boolean checkempty(){
         if(email.getText().length()==0){

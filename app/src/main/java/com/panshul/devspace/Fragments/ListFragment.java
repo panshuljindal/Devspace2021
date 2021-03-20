@@ -33,7 +33,7 @@ public class ListFragment extends Fragment {
 
     View view;
     RecyclerView recyclerView;
-    List<TaskModel> taskList;
+    public static List<TaskModel> taskList;
     ImageView add;
     ConstraintLayout ui1;
     CardView ui2;
