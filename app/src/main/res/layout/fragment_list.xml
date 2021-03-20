@@ -22,14 +22,14 @@
 
             <ImageView
                 android:id="@+id/additionImageView"
-                android:foreground="?android:attr/selectableItemBackground"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginRight="15dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginRight="25dp"
+                android:foreground="?android:attr/selectableItemBackground"
                 android:src="@drawable/ic_add"
-                app:layout_constraintEnd_toStartOf="@+id/imageView2"
+                app:layout_constraintEnd_toStartOf="@+id/profile1"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -49,7 +49,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/profile1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
@@ -73,16 +73,14 @@
         app:layout_constraintTop_toBottomOf="@+id/listFragmentCardView" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/emptyLayout"
-        android:layout_width="wrap_content"
+        android:id="@+id/clockEmptyLayout3"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="85dp"
         android:layout_marginLeft="85dp"
         android:layout_marginTop="270dp"
         android:layout_marginEnd="85dp"
         android:layout_marginRight="85dp"
-        android:layout_marginBottom="230dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

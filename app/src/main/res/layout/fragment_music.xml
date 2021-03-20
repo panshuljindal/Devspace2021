@@ -28,7 +28,7 @@
                 android:layout_marginEnd="25dp"
                 android:layout_marginRight="25dp"
                 android:src="@drawable/ic_add"
-                app:layout_constraintEnd_toStartOf="@+id/profileImageViewPlaylist"
+                app:layout_constraintEnd_toStartOf="@+id/profile5"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -48,7 +48,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/profileImageViewPlaylist"
+                android:id="@+id/profile5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"

@@ -1,6 +1,7 @@
 package com.panshul.devspace.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -22,6 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.panshul.devspace.Activity.Profile_Page;
 import com.panshul.devspace.Model.TaskModel;
 import com.panshul.devspace.R;
 
@@ -32,7 +34,7 @@ import java.util.List;
 public class PomodoroFragment extends Fragment {
 
     View view;
-    ImageView cancel;
+    ImageView cancel,profile;
     TextView timer,state,name;
     CountDownTimer countDownTimer;
     private int quiztime=12000;
@@ -73,6 +75,36 @@ public class PomodoroFragment extends Fragment {
         timer = view.findViewById(R.id.timerTextView);
         state = view.findViewById(R.id.timerTextView2);
         name=view.findViewById(R.id.textView3);
+        profile = view.findViewById(R.id.profile4);
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(view.getContext(), Profile_Page.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isCompleted){
+
+                }
+                else {
+                    points = points - 1;
+                    editor1.putString("points", String.valueOf(points));
+                    editor1.apply();
+                    myref.child(uid).child("points").setValue(points);
+                    countDownTimer.cancel();
+                }
+                ClockFragment fragment = new ClockFragment();
+                FragmentManager manager = ((FragmentActivity) v.getContext()).getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.replace(R.id.frameLayout, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
         pref= view.getContext().getSharedPreferences("com.panshul.devspace.clock", Context.MODE_PRIVATE);
         taskId = pref.getString("taskId","");
         for (int i=0;i<taskList.size();i++){

@@ -1,6 +1,7 @@
 package com.panshul.devspace.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.panshul.devspace.Activity.Profile_Page;
 import com.panshul.devspace.Model.TaskModel;
 import com.panshul.devspace.R;
 
@@ -84,7 +86,7 @@ public class TaskFragment extends Fragment {
     }
     public void findViewByIds(){
         delete = view.findViewById(R.id.deleteImageView);
-        profile = view.findViewById(R.id.profileImageView);
+        profile = view.findViewById(R.id.profile3);
         subtraction = view.findViewById(R.id.subtractionButton);
         addition=view.findViewById(R.id.additionButton);
         name = view.findViewById(R.id.editTextTextTaskName);
@@ -155,6 +157,14 @@ public class TaskFragment extends Fragment {
                     minutes.setText(String.valueOf(time));
                 }
 
+            }
+        });
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(view.getContext(), Profile_Page.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
 

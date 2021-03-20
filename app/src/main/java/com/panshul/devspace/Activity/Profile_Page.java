@@ -2,15 +2,104 @@ package com.panshul.devspace.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.panshul.devspace.R;
 
 public class Profile_Page extends AppCompatActivity {
 
+    TextView name,email,phone,uid,point;
+    String name1,email1,phone1,uid1,point1;
+    ImageView back;
+    Button logout,reset;
+    FirebaseAuth mauth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile__page);
+        name = findViewById(R.id.profileNameAns);
+        email = findViewById(R.id.profileEmailAns);
+        phone = findViewById(R.id.profilePhoneNumAns);
+        point = findViewById(R.id.profilePointNum);
+        uid = findViewById(R.id.profileUserCodeAns);
+        back = findViewById(R.id.profileBackButton);
+        logout = findViewById(R.id.profileLogoutButton);
+        reset = findViewById(R.id.profileChangePwdButton);
+
+        mauth = FirebaseAuth.getInstance();
+
+        SharedPreferences pref = getSharedPreferences("com.panshul.devspace.userdata",MODE_PRIVATE);
+        name1 = pref.getString("name","");
+        email1 = pref.getString("emailId","");
+        phone1 = pref.getString("phone","");
+        point1 = pref.getString("points","");
+        uid1 = pref.getString("uid","");
+
+        name.setText(name1);
+        email.setText(email1);
+        phone.setText(phone1);
+        point.setText(point1);
+        uid.setText(uid1);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Profile_Page.this,MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mauth.signOut();
+                clearData();
+                Intent intent = new Intent(Profile_Page.this,LoginPage.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
+
+    }
+    public void clearData(){
+        SharedPreferences userdata = getSharedPreferences("com.panshul.devspace.userdata", Context.MODE_PRIVATE);
+        SharedPreferences.Editor  editoruser = userdata.edit();
+        editoruser.clear();
+        editoruser.apply();
+
+        SharedPreferences userdata1 = getSharedPreferences("com.panshul.devspace.tasklist",Context.MODE_PRIVATE);
+        SharedPreferences.Editor  editoruser1 = userdata1.edit();
+        editoruser1.clear();
+        editoruser1.apply();
+
+        SharedPreferences userdata2 = getSharedPreferences("com.panshul.devspace.taskId",Context.MODE_PRIVATE);
+        SharedPreferences.Editor  editoruser2 = userdata2.edit();
+        editoruser2.clear();
+        editoruser2.apply();
+
+        SharedPreferences preferences = getSharedPreferences("com.panshul.devspace.spotifyList", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor3 = preferences.edit();
+        editor3.clear();
+        editor3.apply();
+
+        SharedPreferences preferenc = getSharedPreferences("com.panshul.devspace.pomodoro", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor4 = preferenc.edit();
+        editor4.clear();
+        editor4.apply();
+
+        SharedPreferences preferen = getSharedPreferences("com.panshul.devspace.clock", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor5 = preferen.edit();
+        editor5.clear();
+        editor5.apply();
+
+
     }
 }

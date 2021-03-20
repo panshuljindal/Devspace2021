@@ -1,6 +1,7 @@
 package com.panshul.devspace.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -19,6 +20,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.panshul.devspace.Activity.Profile_Page;
 import com.panshul.devspace.Model.PlaylistModel;
 import com.panshul.devspace.R;
 
@@ -32,7 +34,7 @@ public class Add_Playlist_Fragment extends Fragment {
     View view;
     EditText playListName,playListLink;
     List<PlaylistModel> playList;
-    ImageView cancel;
+    ImageView cancel,profile;
     String name;
     Button addPlaylist;
     @Override
@@ -51,6 +53,7 @@ public class Add_Playlist_Fragment extends Fragment {
        playListLink = view.findViewById(R.id.playListLink);
        addPlaylist = view.findViewById(R.id.addPlaylist);
        cancel = view.findViewById(R.id.deleteImageViewPlaylist);
+       profile = view.findViewById(R.id.profile6);
 
        SharedPreferences pref = view.getContext().getSharedPreferences("com.panshul.devspace.userdata",Context.MODE_PRIVATE);
        name = pref.getString("name","");
@@ -75,6 +78,14 @@ public class Add_Playlist_Fragment extends Fragment {
                     transaction.addToBackStack(null);
                     transaction.commit();
                 }
+            }
+        });
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(view.getContext(), Profile_Page.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
         cancel.setOnClickListener(new View.OnClickListener() {

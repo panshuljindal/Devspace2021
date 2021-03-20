@@ -69,6 +69,9 @@ public class SignUpPage extends AppCompatActivity {
                                             myref.child(uid).child("points").setValue("0");
                                             startActivity(intent);
                                         }
+                                        else {
+                                            Toast.makeText(SignUpPage.this, "SignUp Failed", Toast.LENGTH_SHORT).show();
+                                        }
                                     }
                                 });
                             }

@@ -1,6 +1,7 @@
 package com.panshul.devspace.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -20,6 +21,7 @@ import android.widget.ImageView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.panshul.devspace.Activity.Profile_Page;
 import com.panshul.devspace.Adapters.SongsAdapter;
 import com.panshul.devspace.Model.PlaylistModel;
 import com.panshul.devspace.Model.TaskModel;
@@ -36,6 +38,7 @@ public class MusicFragment extends Fragment {
     RecyclerView recyclerView;
     ImageView plus,profile;
     SharedPreferences pref;
+    String dataEntered;
     SharedPreferences.Editor editor;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,16 +50,21 @@ public class MusicFragment extends Fragment {
                              Bundle savedInstanceState) {
         view= inflater.inflate(R.layout.fragment_music, container, false);
 
+        dataEntered="false";
         playList = new ArrayList<>();
         recyclerView = view.findViewById(R.id.playListRecyclerView);
         plus = view.findViewById(R.id.plusPlaylist);
-        profile = view.findViewById(R.id.profileImageViewPlaylist);
+        profile = view.findViewById(R.id.profile5);
         onClickListeners();
 
         pref = view.getContext().getSharedPreferences("com.panshul.devspace.music",Context.MODE_PRIVATE);
         editor = pref.edit();
+        dataEntered = pref.getString("dataEntered","false");
+
+
 
         //addData();
+        //saveData();
         loadData();
         adapter();
         saveData();
@@ -77,21 +85,17 @@ public class MusicFragment extends Fragment {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(view.getContext(), Profile_Page.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
         });
     }
     public void addData(){
-        if (playList.isEmpty()) {
-            playList.add(new PlaylistModel("Rap As a Poem", "efijnewufnhq", "Playlist by Panshul"));
-            playList.add(new PlaylistModel("Rap As a Poem", "efijnewufnhq", "Playlist by Panshul"));
-            playList.add(new PlaylistModel("Rap As a Poem", "efijnewufnhq", "Playlist by Panshul"));
-            playList.add(new PlaylistModel("Rap As a Poem", "efijnewufnhq", "Playlist by Panshul"));
-            adapter();
-        }
-        else {
-            loadData();
-        }
+        playList.add(new PlaylistModel("Rap As a Poem", "efijnewufnhq", "Playlist by Panshul"));
+        playList.add(new PlaylistModel("Rap As a Poem", "efijnewufnhq", "Playlist by Panshul"));
+        playList.add(new PlaylistModel("Rap As a Poem", "efijnewufnhq", "Playlist by Panshul"));
+        playList.add(new PlaylistModel("Rap As a Poem", "efijnewufnhq", "Playlist by Panshul"));
     }
     public void adapter(){
         SongsAdapter adapter = new SongsAdapter(view.getContext(),playList,MusicFragment.this);
@@ -110,18 +114,13 @@ public class MusicFragment extends Fragment {
         editor.apply();
     }
     public void loadData(){
-        if (playList.isEmpty()) {
             SharedPreferences preferences = view.getContext().getSharedPreferences("com.panshul.devspace.spotifyList", Context.MODE_PRIVATE);
             Gson gson = new Gson();
             String json = preferences.getString("songs", "");
-            Type type = new TypeToken<ArrayList<PlaylistModel>>() {
-            }.getType();
+            Type type = new TypeToken<ArrayList<PlaylistModel>>() {}.getType();
             playList = gson.fromJson(json, type);
             if (playList == null) {
                 playList = new ArrayList<>();
             }
-        }else {
-            addData();
-        }
     }
 }

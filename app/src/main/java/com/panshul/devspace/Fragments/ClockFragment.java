@@ -1,6 +1,7 @@
 package com.panshul.devspace.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -21,6 +22,7 @@ import android.widget.ImageView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.panshul.devspace.Activity.Profile_Page;
 import com.panshul.devspace.Adapters.ClockAdapter;
 import com.panshul.devspace.Model.TaskModel;
 import com.panshul.devspace.R;
@@ -36,7 +38,7 @@ public class ClockFragment extends Fragment {
     RecyclerView recyclerView;
     ConstraintLayout ui1,ui2;
     Button addTask;
-    ImageView addtask2;
+    ImageView addtask2,profile;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +51,7 @@ public class ClockFragment extends Fragment {
         // Inflate the layout for this fragment
         view= inflater.inflate(R.layout.fragment_clock, container, false);
         recyclerView = view.findViewById(R.id.clockListRecyclerView);
+        profile = view.findViewById(R.id.profile2);
         ui1 = view.findViewById(R.id.clockEmptyLayout1);
         ui2 = view.findViewById(R.id.clockLayout);
         addTask = view.findViewById(R.id.emptyTaskButton1);
@@ -79,6 +82,14 @@ public class ClockFragment extends Fragment {
         recyclerView.setAdapter(adapter);
     }
     public void onClickListeners(){
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(view.getContext(), Profile_Page.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
         addTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

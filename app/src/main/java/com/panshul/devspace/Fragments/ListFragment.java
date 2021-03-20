@@ -1,6 +1,7 @@
 package com.panshul.devspace.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -21,6 +22,7 @@ import android.widget.ImageView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.panshul.devspace.Activity.Profile_Page;
 import com.panshul.devspace.Adapters.TaskAdapter;
 import com.panshul.devspace.Model.TaskModel;
 import com.panshul.devspace.R;
@@ -34,7 +36,7 @@ public class ListFragment extends Fragment {
     View view;
     RecyclerView recyclerView;
     public static List<TaskModel> taskList;
-    ImageView add;
+    ImageView add,profile;
     ConstraintLayout ui1;
     CardView ui2;
     Button emptyButton;
@@ -52,8 +54,9 @@ public class ListFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.taskRecyclerView);
         add = view.findViewById(R.id.additionImageView);
-        ui1 = view.findViewById(R.id.emptyLayout);
+        ui1 = view.findViewById(R.id.clockEmptyLayout3);
         ui2=view.findViewById(R.id.listFragmentCardView);
+        profile = view.findViewById(R.id.profile1);
         emptyButton = view.findViewById(R.id.emptyTaskButton);
         onClickListeners();
         taskList=new ArrayList<>();
@@ -107,6 +110,14 @@ public class ListFragment extends Fragment {
         checkData();
     }
     public void onClickListeners(){
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(view.getContext(), Profile_Page.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
