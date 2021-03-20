@@ -38,7 +38,7 @@ public class ClockAdapter extends RecyclerView.Adapter<ClockAdapter.MyViewHolder
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView time,sessions,name;
-        ImageView delete;
+        ImageView delete,check;
         ConstraintLayout layout;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -47,6 +47,8 @@ public class ClockAdapter extends RecyclerView.Adapter<ClockAdapter.MyViewHolder
             sessions = itemView.findViewById(R.id.clockNoOfSessions);
             delete = itemView.findViewById(R.id.clockDeleteImage);
             layout = itemView.findViewById(R.id.clockItemLayout);
+            check = itemView.findViewById(R.id.clockCheckImage);
+
         }
     }
     @NonNull
@@ -62,6 +64,12 @@ public class ClockAdapter extends RecyclerView.Adapter<ClockAdapter.MyViewHolder
         holder.time.setText(item.getTime()+" min");
         holder.name.setText(item.getTaskName());
         holder.sessions.setText(item.getTime()/25 +" sessions");
+        if (item.getIsCompleted().equals("true")){
+            holder.check.setVisibility(View.VISIBLE);
+        }
+        else {
+            holder.check.setVisibility(View.INVISIBLE);
+        }
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,7 +84,7 @@ public class ClockAdapter extends RecyclerView.Adapter<ClockAdapter.MyViewHolder
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (item.getIsCompleted()=="false") {
+                if (item.getIsCompleted().equals("false")) {
                     SharedPreferences preferences = context.getSharedPreferences("com.panshul.devspace.clock", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("taskId", item.getTaskId());

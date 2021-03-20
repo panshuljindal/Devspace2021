@@ -182,12 +182,12 @@ public class PomodoroFragment extends Fragment {
             secondString="0"+secondString;
         }
         if(min>=1) {
-            Log.i("timer",Integer.toString(min) + ":" + secondString);
+           // Log.i("timer",Integer.toString(min) + ":" + secondString);
             timer.setText(Integer.toString(min) + ":" + secondString);
         }
         else{
-            timer.setText(secondString);
-            Log.i("timer2",secondString);
+            timer.setText("00"+":"+secondString);
+            //Log.i("timer2","00"+":"+secondString);
         }
     }
 

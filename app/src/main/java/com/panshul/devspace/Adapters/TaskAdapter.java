@@ -68,12 +68,13 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
         TaskModel item = taskList.get(position);
         holder.name.setText(item.getTaskName());
         holder.info.setText(item.getTaskContent());
+        Log.i("isCompleted",item.getIsCompleted());
         holder.timer.setText(item.getTime() +" min");
-        if (item.getIsCompleted()=="false"){
-            holder.check.setVisibility(View.INVISIBLE);
+        if (item.getIsCompleted().equals("true")){
+            holder.check.setVisibility(View.VISIBLE);
         }
         else {
-            holder.check.setVisibility(View.VISIBLE);
+            holder.check.setVisibility(View.INVISIBLE);
         }
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,7 +90,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.MyViewHolder> 
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (item.getIsCompleted()=="false") {
+                if (item.getIsCompleted().equals("false")) {
                     SharedPreferences preferences = context.getSharedPreferences("com.panshul.devspace.taskId", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
                     editor.putString("taskSpecificId", item.getTaskId());

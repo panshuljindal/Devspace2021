@@ -89,12 +89,12 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginRight="10dp"
-                app:layout_constraintEnd_toStartOf="@+id/ItemTickImage"
-                app:layout_constraintTop_toBottomOf="@id/ItemTaskContent"
-                app:srcCompat="@drawable/ic_delete"
+                android:layout_marginEnd="25dp"
+                android:layout_marginRight="25dp"
                 android:foreground="?android:attr/selectableItemBackground"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ItemTaskContent"
+                app:srcCompat="@drawable/ic_delete"
                 tools:ignore="VectorDrawableCompat" />
 
             <ImageView
@@ -102,9 +102,9 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginEnd="25dp"
-                android:layout_marginRight="25dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                app:layout_constraintEnd_toStartOf="@+id/ItemDeleteImage"
                 app:layout_constraintTop_toBottomOf="@+id/ItemTaskContent"
                 app:srcCompat="@drawable/ic_check"
                 tools:ignore="VectorDrawableCompat" />
