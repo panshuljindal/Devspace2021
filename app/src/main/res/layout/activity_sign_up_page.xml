@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#131313"
     tools:context=".Activity.SignUpPage">
 
     <ScrollView
@@ -21,105 +22,185 @@
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/appName"
+                android:id="@+id/Signuptext"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="130dp"
-                android:layout_marginLeft="130dp"
-                android:layout_marginTop="50dp"
-                android:text="App Name"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="80dp"
+                android:text="Sign Up"
+                android:textColor="#fff"
                 android:textSize="30sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/signup"
+                android:id="@+id/signupContent"
+                android:layout_width="337dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
+                android:text="Enter your details to create a new account "
+                android:textColor="#727272"
+                android:textSize="11dp"
+                android:fontFamily="@font/inter_regular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/Signuptext" />
+
+            <TextView
+                android:id="@+id/signupFullName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginLeft="40dp"
-                android:layout_marginTop="40dp"
-                android:text="Sign In"
-                android:textSize="25sp"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="Full Name"
+                android:textColor="#fff"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/appName" />
+                app:layout_constraintTop_toBottomOf="@id/signupContent" />
 
             <EditText
                 android:id="@+id/editTextTextSignupName"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="11dp"
+                android:background="@drawable/edittext_background"
+                android:ems="10"
+                android:fontFamily="@font/inter_regular"
+                android:hint="Enter Name"
+                android:inputType="textPersonName"
+                android:paddingLeft="12dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="#fff"
+                android:textColorHint="#ABABAB"
+                android:textSize="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/signupFullName" />
+
+            <TextView
+                android:id="@+id/signupMobileNum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginLeft="40dp"
-                android:layout_marginTop="30dp"
-                android:ems="10"
-                android:hint="Enter Name"
-                android:inputType="textPersonName"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="Mobile Number"
+                android:textColor="#fff"
+                android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/signup" />
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextSignupName" />
 
             <EditText
                 android:id="@+id/editTextTextPersonSignupEmail"
-                android:layout_width="wrap_content"
+                android:layout_width="330dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginLeft="40dp"
-                android:layout_marginTop="15dp"
-                android:ems="10"
-                android:hint="Enter Email Id"
-                android:inputType="textPersonName"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/editTextTextSignupName" />
-
-            <EditText
-                android:id="@+id/editTextTextPersonSignupMobNum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="11dp"
+                android:background="@drawable/edittext_background"
                 android:ems="10"
                 android:hint="Enter Mobile Number"
                 android:inputType="textPersonName"
+                android:fontFamily="@font/inter_regular"
+                android:paddingLeft="12dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="#fff"
+                android:textSize="16dp"
+                android:textColorHint="#ABABAB"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/editTextTextPersonSignupEmail" />
+                app:layout_constraintTop_toBottomOf="@id/signupMobileNum" />
 
-            <EditText
-                android:id="@+id/editTextTextPersonSignupPwd"
+            <TextView
+                android:id="@+id/signupEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="40dp"
                 android:layout_marginLeft="40dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="Email"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonSignupEmail" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonSignupMobNum"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="11dp"
+                android:textSize="16dp"
+                android:background="@drawable/edittext_background"
+                android:ems="10"
+                android:hint="Enter Email"
+                android:inputType="textPersonName"
+                android:paddingLeft="12dp"
+                android:paddingTop="5dp"
+                android:fontFamily="@font/inter_regular"
+                android:paddingBottom="5dp"
+                android:textColor="#fff"
+                android:textColorHint="#ABABAB"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/signupEmail" />
+
+            <TextView
+                android:id="@+id/signupPwd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/inter_regular"
+                android:text="Password"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonSignupMobNum" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonSignupPwd"
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="11dp"
+                android:background="@drawable/edittext_background"
                 android:ems="10"
                 android:hint="Enter Password"
                 android:inputType="textPersonName"
+                android:paddingLeft="12dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textSize="16dp"
+                android:textColor="#fff"
+                android:fontFamily="@font/inter_regular"
+                android:textColorHint="#ABABAB"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/editTextTextPersonSignupMobNum" />
+                app:layout_constraintTop_toBottomOf="@id/signupPwd" />
 
             <Button
                 android:id="@+id/signUpButton"
-                android:layout_width="wrap_content"
+                android:layout_width="170dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="156dp"
-                android:layout_marginLeft="156dp"
-                android:layout_marginTop="20dp"
-                android:text="Sign Up"
+                android:fontFamily="@font/inter_semibold"
+                android:layout_marginStart="130dp"
+                android:layout_marginLeft="130dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/task_button_background"
+                android:text="Create Account"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/editTextTextPersonSignupPwd" />
 
-            <ImageView
-                android:id="@+id/imageViewSignup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/editTextTextPersonSignupPwd"
-                app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonSignupPwd"
-                app:layout_constraintHorizontal_bias="0.994"
-                app:layout_constraintStart_toStartOf="@+id/editTextTextPersonSignupPwd"
-                app:layout_constraintTop_toTopOf="@+id/editTextTextPersonSignupPwd"
-                app:layout_constraintVertical_bias="0.476"
-                app:srcCompat="@drawable/ic_friends"
-                tools:ignore="VectorDrawableCompat"
-                android:contentDescription="TODO" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
