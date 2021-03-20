@@ -7,15 +7,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.panshul.devspace.Fragments.ClockFragment;
 import com.panshul.devspace.Model.TaskModel;
+import com.panshul.devspace.Fragments.PomodoroFragment;
 import com.panshul.devspace.R;
 
 import java.util.List;
@@ -72,7 +75,12 @@ public class ClockAdapter extends RecyclerView.Adapter<ClockAdapter.MyViewHolder
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, item.toString(), Toast.LENGTH_SHORT).show();
+                PomodoroFragment fragment = new PomodoroFragment();
+                FragmentManager manager = ((FragmentActivity) v.getContext()).getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.replace(R.id.frameLayout, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
     }
