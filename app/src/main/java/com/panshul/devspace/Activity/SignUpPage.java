@@ -38,10 +38,10 @@ public class SignUpPage extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up_page);
 
 
-        name = findViewById(R.id.editTextTextSignupName);
-        emailId = findViewById(R.id.editTextTextPersonSignupEmail);
-        phoneNumber = findViewById(R.id.editTextTextPersonSignupMobNum);
-        password = findViewById(R.id.editTextTextPersonSignupPwd);
+        name = findViewById(R.id.signUpName);
+        emailId = findViewById(R.id.signUpEmail);
+        phoneNumber = findViewById(R.id.signUpMobileNumber);
+        password = findViewById(R.id.signUpPassword);
         signUp = findViewById(R.id.signUpButton);
         mauth = FirebaseAuth.getInstance();
         FirebaseDatabase db = FirebaseDatabase.getInstance();
@@ -66,6 +66,7 @@ public class SignUpPage extends AppCompatActivity {
                                             myref.child(uid).child("phoneNumber").setValue(phoneNumber.getText().toString());
                                             myref.child(uid).child("uid").setValue(uid);
                                             myref.child(uid).child("fcm").setValue("null");
+                                            myref.child(uid).child("points").setValue("0");
                                             startActivity(intent);
                                         }
                                     }

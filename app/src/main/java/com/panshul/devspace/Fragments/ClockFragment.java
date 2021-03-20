@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,10 +54,22 @@ public class ClockFragment extends Fragment {
         addTask = view.findViewById(R.id.emptyTaskButton1);
         addtask2 = view.findViewById(R.id.clockAddImageview);
         onClickListeners();
-
-        loadData();
-        adapter();
-        checkData();
+        SharedPreferences pref= view.getContext().getSharedPreferences("com.panshul.devspace.pomodoro", Context.MODE_PRIVATE);
+        String isTimerStarted = pref.getString("isTimerStarted","");
+        Log.i("isTimerStared",isTimerStarted);
+        if(isTimerStarted=="true"){
+            PomodoroFragment fragment = new PomodoroFragment();
+            FragmentManager manager = ((FragmentActivity) view.getContext()).getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.replace(R.id.frameLayout, fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
+        else {
+            loadData();
+            adapter();
+            checkData();
+        }
         return view;
     }
     public void adapter(){

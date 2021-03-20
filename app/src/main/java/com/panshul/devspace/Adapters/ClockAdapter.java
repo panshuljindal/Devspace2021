@@ -75,6 +75,10 @@ public class ClockAdapter extends RecyclerView.Adapter<ClockAdapter.MyViewHolder
         holder.layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SharedPreferences preferences = context.getSharedPreferences("com.panshul.devspace.clock",Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putString("taskId",item.getTaskId());
+                editor.apply();
                 PomodoroFragment fragment = new PomodoroFragment();
                 FragmentManager manager = ((FragmentActivity) v.getContext()).getSupportFragmentManager();
                 FragmentTransaction transaction = manager.beginTransaction();

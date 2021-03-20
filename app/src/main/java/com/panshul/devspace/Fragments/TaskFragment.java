@@ -34,6 +34,7 @@ public class TaskFragment extends Fragment {
     View view;
     ImageView delete,profile;
     Button subtraction,addition,schedule;
+    List<TaskModel> taskList;
     EditText name,content;
     TextView minutes;
     int index;

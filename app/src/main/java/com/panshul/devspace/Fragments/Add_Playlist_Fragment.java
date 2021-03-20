@@ -1,4 +1,4 @@
-package com.panshul.devspace;
+package com.panshul.devspace.Fragments;
 
 import android.os.Bundle;
 
@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.panshul.devspace.R;
 
 
 public class Add_Playlist_Fragment extends Fragment {
