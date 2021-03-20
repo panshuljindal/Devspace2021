@@ -5,12 +5,14 @@ public class TaskModel {
     String taskContent;
     int time;
     String isCompleted;
+    String taskId;
 
-    public TaskModel(String taskName, String taskContent, int time, String isCompleted) {
+    public TaskModel(String taskName, String taskContent, int time, String isCompleted, String taskId) {
         this.taskName = taskName;
         this.taskContent = taskContent;
         this.time = time;
         this.isCompleted = isCompleted;
+        this.taskId = taskId;
     }
 
     public String getTaskName() {
@@ -43,5 +45,13 @@ public class TaskModel {
 
     public void setIsCompleted(String isCompleted) {
         this.isCompleted = isCompleted;
+    }
+
+    public String getTaskId() {
+        return taskId;
+    }
+
+    public void setTaskId(String taskId) {
+        this.taskId = taskId;
     }
 }

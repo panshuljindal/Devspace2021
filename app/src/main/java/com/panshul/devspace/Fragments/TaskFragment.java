@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
@@ -26,6 +27,7 @@ import com.panshul.devspace.R;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class TaskFragment extends Fragment {
     View view;
@@ -74,15 +76,40 @@ public class TaskFragment extends Fragment {
         schedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TaskModel model = new TaskModel(name.getText().toString(),content.getText().toString(),Integer.valueOf(minutes.getText().toString()),"false");
-                list1.add(model);
-                saveData();
-                ListFragment fragment = new ListFragment();
-                FragmentManager manager = ((FragmentActivity) v.getContext()).getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.frameLayout, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                if (checkEmpty()) {
+                    String uniqueId = UUID.randomUUID().toString();
+                    TaskModel model = new TaskModel(name.getText().toString(), content.getText().toString(), Integer.valueOf(minutes.getText().toString()), "false", uniqueId);
+                    list1.add(model);
+                    saveData();
+                    ListFragment fragment = new ListFragment();
+                    FragmentManager manager = ((FragmentActivity) v.getContext()).getSupportFragmentManager();
+                    FragmentTransaction transaction = manager.beginTransaction();
+                    transaction.replace(R.id.frameLayout, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }
+            }
+        });
+        addition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int time = Integer.valueOf(minutes.getText().toString());
+                time = time+25;
+                minutes.setText(String.valueOf(time));
+            }
+        });
+        subtraction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int time = Integer.valueOf(minutes.getText().toString());
+                if(time==25){
+                    Toast.makeText(view.getContext(), "Cannot be less than 25", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    time = time-25;
+                    minutes.setText(String.valueOf(time));
+                }
+
             }
         });
 
@@ -104,6 +131,16 @@ public class TaskFragment extends Fragment {
         if(list1==null){
             list1 =new ArrayList<>();
         }
+    }
+    public boolean checkEmpty(){
+        if(name.getText().toString().length()==0){
+            Toast.makeText(view.getContext(), "Please enter a Task Name", Toast.LENGTH_SHORT).show();
+            return false;
+        }if (content.getText().toString().length()==0){
+            Toast.makeText(view.getContext(), "Please enter Task Content", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        return true;
     }
 
 }

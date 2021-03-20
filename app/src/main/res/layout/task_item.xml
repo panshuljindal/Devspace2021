@@ -93,6 +93,7 @@
                 app:layout_constraintEnd_toStartOf="@+id/ItemTickImage"
                 app:layout_constraintTop_toBottomOf="@id/ItemTaskContent"
                 app:srcCompat="@drawable/ic_delete"
+                android:foreground="?android:attr/selectableItemBackground"
                 tools:ignore="VectorDrawableCompat" />
 
             <ImageView

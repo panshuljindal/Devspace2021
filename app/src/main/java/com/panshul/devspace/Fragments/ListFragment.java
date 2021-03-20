@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -14,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.google.gson.Gson;
@@ -32,6 +35,9 @@ public class ListFragment extends Fragment {
     RecyclerView recyclerView;
     List<TaskModel> taskList;
     ImageView add;
+    ConstraintLayout ui1;
+    CardView ui2;
+    Button emptyButton;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,45 +52,73 @@ public class ListFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.taskRecyclerView);
         add = view.findViewById(R.id.additionImageView);
+        ui1 = view.findViewById(R.id.emptyLayout);
+        ui2=view.findViewById(R.id.listFragmentCardView);
+        emptyButton = view.findViewById(R.id.emptyTaskButton);
         onClickListeners();
         taskList=new ArrayList<>();
-        addData();
+        //addData();
         loadData();
+        checkData();
         adapter();
         saveData();
         return view;
+    }
+    public void checkData(){
+        if (taskList.isEmpty()){
+            //ui2.setVisibility(View.INVISIBLE);
+            recyclerView.setVisibility(View.INVISIBLE);
+            ui1.setVisibility(View.VISIBLE);
+        }else {
+            ui1.setVisibility(View.INVISIBLE);
+            recyclerView.setVisibility(View.VISIBLE);
+            //ui2.setVisibility(View.VISIBLE);
+        }
     }
     public void addData(){
         taskList.add(new TaskModel("Task Name","Lorem ipsum dolor sit amet, " +
                 "consectetur adipiscing elit. Amet amet, morbi aliquam nisl fermentum volutpat " +
                 "eleifend id donec. In velit posuere interdum quam volutpat.",
-        50,"true"));
+        50,"true","nhuszbvdijgohengmsknf"));
         taskList.add(new TaskModel("Task Name","Lorem ipsum dolor sit amet, " +
                 "consectetur adipiscing elit. Amet amet, morbi aliquam nisl fermentum volutpat " +
                 "eleifend id donec. In velit posuere interdum quam volutpat.",
-                50,"true"));
+                50,"true","nhuszbvdiswhtfemsknf"));
         taskList.add(new TaskModel("Task Name","Lorem ipsum dolor sit amet, " +
                 "consectetur adipiscing elit. Amet amet, morbi aliquam nisl fermentum volutpat " +
                 "eleifend id donec. In velit posuere interdum quam volutpat.",
-                50,"true"));
+                50,"true","nrbhfswgjnsmzkbglohengmsknf"));
         taskList.add(new TaskModel("Task Name","Lorem ipsum dolor sit amet, " +
                 "consectetur adipiscing elit. Amet amet, morbi aliquam nisl fermentum volutpat " +
                 "eleifend id donec. In velit posuere interdum quam volutpat.",
-                50,"true"));
+                50,"true","nhuszbvdidciugvmsknf"));
         taskList.add(new TaskModel("Task Name","Lorem ipsum dolor sit amet, " +
                 "consectetur adipiscing elit. Amet amet, morbi aliquam nisl fermentum volutpat " +
                 "eleifend id donec. In velit posuere interdum quam volutpat.",
-                50,"true"));
+                50,"true","nhuszbefhujohengmsknf"));
+
     }
     public void adapter(){
-        TaskAdapter adapter = new TaskAdapter(view.getContext(),taskList);
+        TaskAdapter adapter = new TaskAdapter(view.getContext(),taskList,ListFragment.this);
         LinearLayoutManager manager = new LinearLayoutManager(view.getContext());
         manager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
+        checkData();
     }
     public void onClickListeners(){
         add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TaskFragment fragment = new TaskFragment();
+                FragmentManager manager = ((FragmentActivity) v.getContext()).getSupportFragmentManager();
+                FragmentTransaction transaction = manager.beginTransaction();
+                transaction.replace(R.id.frameLayout, fragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+        emptyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TaskFragment fragment = new TaskFragment();
