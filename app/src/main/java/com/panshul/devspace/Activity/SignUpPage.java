@@ -135,7 +135,7 @@ public class SignUpPage extends AppCompatActivity {
         {
             return true;
         }
-        Toast.makeText(SignUpPage.this, "Please enter Vit Email ID", Toast.LENGTH_SHORT).show();
+        Toast.makeText(SignUpPage.this, "Please enter valid Email ID", Toast.LENGTH_SHORT).show();
         return false;
     }
 

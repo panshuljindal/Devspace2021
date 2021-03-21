@@ -220,6 +220,14 @@ public class PomodoroFragment extends Fragment {
             myref.child(uid).child("points").setValue(points);
             //Log.i("points",String.valueOf(points));
             countDownTimer.cancel();
+            saveData();
+            Toast.makeText(view.getContext(), "Your just lost a Point", Toast.LENGTH_SHORT).show();
+            ClockFragment fragment = new ClockFragment();
+            FragmentManager manager = ((FragmentActivity) view.getContext()).getSupportFragmentManager();
+            FragmentTransaction transaction = manager.beginTransaction();
+            transaction.replace(R.id.frameLayout, fragment);
+            transaction.addToBackStack(null);
+            transaction.commit();
         }
     }
 }
