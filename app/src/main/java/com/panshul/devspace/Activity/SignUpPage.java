@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -22,6 +23,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.panshul.devspace.R;
 
+import org.w3c.dom.Text;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,6 +35,7 @@ public class SignUpPage extends AppCompatActivity {
     Button signUp;
     DatabaseReference myref,myref1;
     FirebaseAuth mauth;
+    TextView login;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +43,7 @@ public class SignUpPage extends AppCompatActivity {
 
 
         name = findViewById(R.id.signUpName);
+        login = findViewById(R.id.signUpToLogin);
         emailId = findViewById(R.id.signUpEmail);
         phoneNumber = findViewById(R.id.signUpMobileNumber);
         password = findViewById(R.id.signUpPassword);
@@ -47,6 +52,15 @@ public class SignUpPage extends AppCompatActivity {
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         myref = db.getReference("Users");
         myref1 = db.getReference("Room");
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignUpPage.this,LoginPage.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+            }
+        });
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override

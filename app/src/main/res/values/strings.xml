@@ -4,4 +4,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="pomodoroContent">Pomodoro allows you to productive and schedules 5 minutes break for every 25 minutes you try to complete your task.</string>
     <string name="goToSignUp">New to Selfuel? <u>Sign Up</u></string>
+    <string name="goToLogin"> <u>Back to login?</u></string>
 </resources>
