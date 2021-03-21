@@ -72,6 +72,7 @@ public class LoginPage extends AppCompatActivity {
             public void onClick(View v) {
                 if (checkempty()){
                     if(checkemail()){
+                        login.setEnabled(false);
                         emailId = email.getText().toString();
                         passwordId = password.getText().toString();
                         mauth.signInWithEmailAndPassword(emailId,passwordId).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -80,12 +81,14 @@ public class LoginPage extends AppCompatActivity {
                                 if(task.isSuccessful()){
                                     Intent intent = new Intent(getApplicationContext(),MainActivity.class);
                                     datasave();
+                                    login.setEnabled(true);
                                     Toast.makeText(LoginPage.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                     startActivity(intent);
                                 }
                                 else {
                                     email.setText("");
                                     password.setText("");
+                                    login.setEnabled(true);
                                     Toast.makeText(LoginPage.this, "Login Failed", Toast.LENGTH_SHORT).show();
                                 }
                             }

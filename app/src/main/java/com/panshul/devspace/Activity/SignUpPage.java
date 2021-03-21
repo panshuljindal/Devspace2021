@@ -55,6 +55,7 @@ public class SignUpPage extends AppCompatActivity {
                     if (checkEmpty()){
                         if(checkMail()){
                             if (checkPhone()){
+                                signUp.setEnabled(false);
                                 mauth.createUserWithEmailAndPassword(emailId.getText().toString(),password.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                     @Override
                                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -71,9 +72,11 @@ public class SignUpPage extends AppCompatActivity {
                                             myref1.child(uid).child("uid").setValue(uid);
                                             myref1.child(uid).child("friends").setValue("null");
                                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                            signUp.setEnabled(true);
                                             startActivity(intent);
                                         }
                                         else {
+                                            signUp.setEnabled(true);
                                             Toast.makeText(SignUpPage.this, "SignUp Failed", Toast.LENGTH_SHORT).show();
                                         }
                                     }

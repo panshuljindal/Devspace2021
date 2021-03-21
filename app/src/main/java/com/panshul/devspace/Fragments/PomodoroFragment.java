@@ -71,11 +71,11 @@ public class PomodoroFragment extends Fragment {
         uid = pref1.getString("uid","");
         Log.i("uid",uid);
         loadData();
-        cancel = view.findViewById(R.id.clockCancelImageview);
+        //cancel = view.findViewById(R.id.clockCancelImageview);
         timer = view.findViewById(R.id.timerTextView);
         state = view.findViewById(R.id.timerTextView2);
         name=view.findViewById(R.id.textView3);
-        profile = view.findViewById(R.id.profile4);
+        //profile = view.findViewById(R.id.profile4);
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

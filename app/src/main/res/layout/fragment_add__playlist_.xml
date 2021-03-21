@@ -21,30 +21,48 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/applogo" />
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginBottom="19dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Selfuel"
+                android:textColor="#fff"
+                android:textSize="19dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView7"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <ImageView
                 android:id="@+id/deleteImageViewPlaylist"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginTop="18dp"
                 android:layout_marginEnd="25dp"
                 android:layout_marginRight="25dp"
+                android:layout_marginBottom="18dp"
                 android:src="@drawable/ic_cancel"
-                app:layout_constraintEnd_toStartOf="@+id/profile6"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="19dp"
-                android:layout_marginBottom="19dp"
-                android:fontFamily="@font/inter_semibold"
-                android:text="Devspace"
-                android:textColor="#fff"
-                android:textSize="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/profile6"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
@@ -115,10 +133,10 @@
         android:inputType="textCapSentences"
         android:paddingLeft="12dp"
         android:paddingTop="10dp"
-        android:paddingBottom="8dp"
+        android:paddingBottom="10dp"
         android:textColor="#fff"
         android:textColorHint="#ABABAB"
-        android:textSize="15dp"
+        android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -140,10 +158,10 @@
         android:inputType="textCapSentences"
         android:paddingLeft="12dp"
         android:paddingTop="10dp"
-        android:paddingBottom="8dp"
+        android:paddingBottom="10dp"
         android:textColor="#fff"
         android:textColorHint="#ABABAB"
-        android:textSize="15dp"
+        android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -156,11 +174,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="55dp"
-        android:fontFamily="@font/inter_light"
+        android:fontFamily="@font/inter_regular"
         android:text="Playlist Name"
-
         android:textColor="#fff"
-        android:textSize="20dp"
+        android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -171,10 +188,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="30dp"
-        android:fontFamily="@font/inter_light"
+        android:fontFamily="@font/inter_regular"
         android:text="Playlist Link"
         android:textColor="#fff"
-        android:textSize="20dp"
+        android:textSize="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/playListName" />
 
@@ -187,9 +204,9 @@
         android:layout_marginTop="7dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:fontFamily="@font/inter_light"
+        android:fontFamily="@font/inter_regular"
         android:text="Add your own playlist to our app and share it with others"
-        android:textColor="#fff"
+        android:textColor="#ABABAB"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_playlist" />
