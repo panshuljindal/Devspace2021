@@ -59,7 +59,13 @@ public class Profile_Page extends AppCompatActivity {
                 //String app_url = " https://play.google.com/store/apps/details?id=com.adgvit.externals";
                 Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
                 shareIntent.setType("text/plain");
-                String text = "";
+                String text = "Selfuel - A pomodoro app\n" +
+                        "\n" +
+                        "Optimize your work and increase productivity today.\n" +
+                        "Accept my invite and let's rock together\n" +
+                        "\n" +
+                        "Join now\n" +
+                        uid1;
                 shareIntent.putExtra(Intent.EXTRA_SUBJECT,"");
                 shareIntent.putExtra(android.content.Intent.EXTRA_TEXT,text);
                 v.getContext().startActivity(Intent.createChooser(shareIntent,"Share via"));

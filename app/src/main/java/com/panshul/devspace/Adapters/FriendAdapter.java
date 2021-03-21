@@ -1,6 +1,7 @@
 package com.panshul.devspace.Adapters;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.MyViewHold
 
     Context mcontext;
     List<FriendsModel> list1;
+    String uid;
 
     public FriendAdapter(Context mcontext, List<FriendsModel> list1) {
         this.mcontext = mcontext;
@@ -51,12 +53,16 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.MyViewHold
         FriendsModel item = list1.get(position);
         holder.name.setText(item.getName());
         holder.score.setText(item.getScore());
+        SharedPreferences pref = mcontext.getSharedPreferences("com.panshul.devspace.userdata",Context.MODE_PRIVATE);
+        uid = pref.getString("uid","");
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FirebaseDatabase db = FirebaseDatabase.getInstance();
                 DatabaseReference myref = db.getReference("Room");
 
+                myref.child(uid).child("friends").child(item.getFriendId()).child("uid").removeValue();
+                myref.child(item.getFriendId()).child("friends").child(uid).child("uid").removeValue();
             }
         });
 

@@ -3,10 +3,12 @@ package com.panshul.devspace.Model;
 public class FriendsModel {
     String name;
     String score;
+    String friendId;
 
-    public FriendsModel(String name, String score) {
+    public FriendsModel(String name, String score, String friendId) {
         this.name = name;
         this.score = score;
+        this.friendId = friendId;
     }
 
     public String getName() {
@@ -23,5 +25,13 @@ public class FriendsModel {
 
     public void setScore(String score) {
         this.score = score;
+    }
+
+    public String getFriendId() {
+        return friendId;
+    }
+
+    public void setFriendId(String friendId) {
+        this.friendId = friendId;
     }
 }

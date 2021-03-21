@@ -1,10 +1,14 @@
 package com.panshul.devspace.Adapters;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -44,6 +48,9 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.MyViewHolder
             randomBack.add(R.drawable.gradient3);
             randomBack.add(R.drawable.gradient4);
             randomBack.add(R.drawable.gradient5);
+            randomBack.add(R.drawable.gradient6);
+            randomBack.add(R.drawable.gradient7);
+            randomBack.add(R.drawable.gradient8);
 
 
             playListBy = itemView.findViewById(R.id.playListBy11);
@@ -66,7 +73,20 @@ public class SongsAdapter extends RecyclerView.Adapter<SongsAdapter.MyViewHolder
         PlaylistModel item = playList.get(position);
         holder.playListBy.setText(item.getPlayListBy());
         holder.playListName.setText(item.getPlayListName());
-        holder.layout.setBackground(ContextCompat.getDrawable(context,randomBack.get(position%5)));
+        holder.layout.setBackground(ContextCompat.getDrawable(context,randomBack.get(position%8)));
+        holder.layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(item.getPlayListLink()));
+                    v.getContext().startActivity(intent);
+                }
+                catch (ActivityNotFoundException e){
+                    Toast.makeText(context, "Invaild Link", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
     }
 
     @Override

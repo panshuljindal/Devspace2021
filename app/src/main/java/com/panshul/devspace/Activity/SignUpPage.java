@@ -70,6 +70,7 @@ public class SignUpPage extends AppCompatActivity {
                                             myref.child(uid).child("points").setValue("0");
                                             myref1.child(uid).child("uid").setValue(uid);
                                             myref1.child(uid).child("friends").setValue("null");
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                             startActivity(intent);
                                         }
                                         else {

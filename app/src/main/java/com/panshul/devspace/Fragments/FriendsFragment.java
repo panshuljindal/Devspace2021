@@ -113,7 +113,7 @@ public class FriendsFragment extends Fragment {
                         for (String uid2:uids){
                             String name = snapshot.child(uid2).child("name").getValue().toString();
                             String score = snapshot.child(uid2).child("points").getValue().toString();
-                            friendsList.add(new FriendsModel(name,score));
+                            friendsList.add(new FriendsModel(name,score,uid2));
                         }
                         saveData();
                         adapter();

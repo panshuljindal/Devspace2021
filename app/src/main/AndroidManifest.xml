@@ -11,10 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DevSpace2021">
-        <activity android:name=".Activity.Profile_Page"></activity>
+        <activity android:name=".Activity.LoginPage"></activity>
+        <activity android:name=".Activity.Profile_Page" />
         <activity android:name=".Activity.SignUpPage" />
         <activity android:name=".Activity.MainActivity" />
-        <activity android:name=".Activity.LoginPage">
+        <activity android:name=".Activity.LandingPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
