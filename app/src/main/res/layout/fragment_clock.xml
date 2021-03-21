@@ -71,30 +71,48 @@
             android:layout_height="wrap_content">
 
             <ImageView
+                android:id="@+id/imageView6"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="18dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/applogo" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="1dp"
+                android:layout_marginLeft="1dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginBottom="19dp"
+                android:fontFamily="@font/inter_semibold"
+                android:text="Selfuel"
+                android:textColor="#fff"
+                android:textSize="19dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageView6"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
                 android:id="@+id/clockAddImageview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
                 android:layout_marginEnd="25dp"
                 android:layout_marginRight="25dp"
+                android:layout_marginBottom="18dp"
                 android:src="@drawable/ic_add"
-                app:layout_constraintEnd_toStartOf="@+id/profile2"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="19dp"
-                android:layout_marginBottom="19dp"
-                android:fontFamily="@font/inter_semibold"
-                android:text="Devspace"
-                android:textColor="#fff"
-                android:textSize="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/profile2"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
@@ -141,7 +159,7 @@
             android:fontFamily="@font/inter_semibold"
             android:text="Task List"
             android:textColor="#fff"
-            android:textSize="20dp"
+            android:textSize="25dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -154,8 +172,8 @@
             android:layout_marginTop="8dp"
             android:fontFamily="@font/inter_regular"
             android:text="Click a task to start your Pomodoro cycle"
-            android:textColor="#727272"
-            android:textSize="11dp"
+            android:textColor="#ABABAB"
+            android:textSize="13dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ItemTaskList" />
 
