@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,8 +38,8 @@ public class PomodoroFragment extends Fragment {
     ImageView cancel,profile;
     TextView timer,state,name;
     CountDownTimer countDownTimer;
-    private int quiztime=12000;
-    private int breaktime =9000;
+    private int quiztime=10000;
+    private int breaktime =5000;
     DatabaseReference myref;
     public int points;
     public boolean isCompleted;
@@ -76,35 +77,8 @@ public class PomodoroFragment extends Fragment {
         state = view.findViewById(R.id.timerTextView2);
         name=view.findViewById(R.id.textView3);
         //profile = view.findViewById(R.id.profile4);
-        profile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(view.getContext(), Profile_Page.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-            }
-        });
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isCompleted){
 
-                }
-                else {
-                    points = points - 1;
-                    editor1.putString("points", String.valueOf(points));
-                    editor1.apply();
-                    myref.child(uid).child("points").setValue(points);
-                    countDownTimer.cancel();
-                }
-                ClockFragment fragment = new ClockFragment();
-                FragmentManager manager = ((FragmentActivity) v.getContext()).getSupportFragmentManager();
-                FragmentTransaction transaction = manager.beginTransaction();
-                transaction.replace(R.id.frameLayout, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
-            }
-        });
+
         pref= view.getContext().getSharedPreferences("com.panshul.devspace.clock", Context.MODE_PRIVATE);
         taskId = pref.getString("taskId","");
         for (int i=0;i<taskList.size();i++){
@@ -119,8 +93,13 @@ public class PomodoroFragment extends Fragment {
                 break;
             }
         }
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startTimer();
+            }
+        },500);
 
-        startTimer();
         return view;
     }
     public void loadData(){
@@ -143,8 +122,11 @@ public class PomodoroFragment extends Fragment {
 
             @Override
             public void onFinish() {
-                startTimerBreak();
+                updateTextView(breaktime/1000);
                 state.setText("Break Time");
+                Toast.makeText(view.getContext(), "Break Time Started", Toast.LENGTH_SHORT).show();
+                startTimerBreak();
+
             }
         }.start();
     }
@@ -191,6 +173,7 @@ public class PomodoroFragment extends Fragment {
                     editor1.apply();
                     Log.i("Points1",String.valueOf(points));
                     Toast.makeText(view.getContext(), "Next Session started", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(view.getContext(), String.valueOf(sessions)+" Session left", Toast.LENGTH_SHORT).show();
                     startTimer();
                 }
 

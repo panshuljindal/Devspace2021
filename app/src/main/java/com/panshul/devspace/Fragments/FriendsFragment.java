@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -17,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -46,6 +48,8 @@ public class FriendsFragment extends Fragment {
     List<String> uids;
     DatabaseReference myref,myref1;
     ImageView add,profile;
+    ConstraintLayout ui1;
+    TextView text1,text2;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +62,9 @@ public class FriendsFragment extends Fragment {
         uids = new ArrayList<>();
         friendsList = new ArrayList<>();
 
+        ui1 = view.findViewById(R.id.emptyFriendsLayout);
+        text1 = view.findViewById(R.id.fragfrndList);
+        text2 = view.findViewById(R.id.fragfrndListContent);
         recyclerView = view.findViewById(R.id.friendRecyclerView);
         add = view.findViewById(R.id.friendsAddImageview);
         profile = view.findViewById(R.id.profile7);
@@ -68,10 +75,30 @@ public class FriendsFragment extends Fragment {
         onClickListeners();
         loadData();
         addData();
+        checkData();
         adapter();
 
 
+
         return view;
+    }
+    public void checkData(){
+        loadData();
+        if (friendsList.isEmpty()){
+            ui1.setVisibility(View.VISIBLE);
+            text1.setVisibility(View.INVISIBLE);
+            text2.setVisibility(View.INVISIBLE);
+            recyclerView.setVisibility(View.INVISIBLE);
+        }
+        else {
+            ui1.setVisibility(View.INVISIBLE);
+            text1.setVisibility(View.VISIBLE);
+            text2.setVisibility(View.VISIBLE);
+            recyclerView.setVisibility(View.VISIBLE);
+
+            adapter();
+        }
+
     }
     public void onClickListeners(){
         add.setOnClickListener(new View.OnClickListener() {
@@ -133,7 +160,7 @@ public class FriendsFragment extends Fragment {
         });
     }
     public void adapter(){
-        FriendAdapter adapter = new FriendAdapter(view.getContext(),friendsList);
+        FriendAdapter adapter = new FriendAdapter(view.getContext(),friendsList,FriendsFragment.this);
         LinearLayoutManager manager = new LinearLayoutManager(view.getContext());
         manager.setOrientation(RecyclerView.VERTICAL);
         recyclerView.setLayoutManager(manager);

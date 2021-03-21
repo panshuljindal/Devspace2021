@@ -84,7 +84,11 @@ public class Profile_Page extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mauth.signOut();
-                clearData();
+                //clearData();
+                SharedPreferences userdata = getSharedPreferences("com.panshul.devspace.userdata", Context.MODE_PRIVATE);
+                SharedPreferences.Editor  editoruser = userdata.edit();
+                editoruser.clear();
+                editoruser.apply();
                 Intent intent = new Intent(Profile_Page.this,LoginPage.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
@@ -125,5 +129,13 @@ public class Profile_Page extends AppCompatActivity {
         editor5.apply();
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        Intent intent = new Intent(Profile_Page.this,MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }

@@ -104,26 +104,32 @@ public class LoginPage extends AppCompatActivity {
         myref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                FirebaseUser user = mauth.getCurrentUser();
-                uid = user.getUid();
+                try {
 
-                editor.putString("uid",uid);
-                String emaili = snapshot.child(uid).child("email").getValue().toString();
-                editor.putString("emailId", emaili);
+                    FirebaseUser user = mauth.getCurrentUser();
+                    uid = user.getUid();
 
-                String fcm = snapshot.child(uid).child("fcm").getValue().toString();
-                editor.putString("fcm", fcm);
+                    editor.putString("uid", uid);
+                    String emaili = snapshot.child(uid).child("email").getValue().toString();
+                    editor.putString("emailId", emaili);
 
-                String name = snapshot.child(uid).child("name").getValue().toString();
-                editor.putString("name", name);
+                    String fcm = snapshot.child(uid).child("fcm").getValue().toString();
+                    editor.putString("fcm", fcm);
 
-                String phone = snapshot.child(uid).child("phoneNumber").getValue().toString();
-                editor.putString("phone", phone);
+                    String name = snapshot.child(uid).child("name").getValue().toString();
+                    editor.putString("name", name);
 
-                String points = snapshot.child(uid).child("points").getValue().toString();
-                editor.putString("points", points);
+                    String phone = snapshot.child(uid).child("phoneNumber").getValue().toString();
+                    editor.putString("phone", phone);
 
-                editor.apply();
+                    String points = snapshot.child(uid).child("points").getValue().toString();
+                    editor.putString("points", points);
+
+                    editor.apply();
+                }
+                catch (NullPointerException e){
+
+                }
 
             }
 

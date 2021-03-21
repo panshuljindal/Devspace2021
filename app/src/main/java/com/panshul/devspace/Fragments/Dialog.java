@@ -91,13 +91,14 @@ public class Dialog extends DialogFragment {
                                         }
                                         if (!users.contains(uid1)){
                                             add.setEnabled(true);
-                                            Toast.makeText(v.getContext(), "User not Found. Please Enter a correct User ID", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(v.getContext(), "User not Found. Enter a correct User ID", Toast.LENGTH_SHORT).show();
                                             getDialog().dismiss();
                                         }else {
                                             add.setEnabled(true);
                                             myref2.child(uid).child("friends").child(uid1).child("uid").setValue(uid1);
                                             myref2.child(uid1).child("friends").child(uid).child("uid").setValue(uid);
                                             Toast.makeText(v.getContext(), "Friend Added", Toast.LENGTH_SHORT).show();
+
                                             getDialog().dismiss();
                                         }
                                     }

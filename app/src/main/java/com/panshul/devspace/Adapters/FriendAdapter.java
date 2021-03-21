@@ -13,9 +13,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.panshul.devspace.Fragments.FriendsFragment;
 import com.panshul.devspace.Model.FriendsModel;
 import com.panshul.devspace.R;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.MyViewHolder> {
@@ -23,10 +28,12 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.MyViewHold
     Context mcontext;
     List<FriendsModel> list1;
     String uid;
+    FriendsFragment fragment;
 
-    public FriendAdapter(Context mcontext, List<FriendsModel> list1) {
+    public FriendAdapter(Context mcontext, List<FriendsModel> list1, FriendsFragment fragment) {
         this.mcontext = mcontext;
         this.list1 = list1;
+        this.fragment = fragment;
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -63,6 +70,8 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.MyViewHold
 
                 myref.child(uid).child("friends").child(item.getFriendId()).child("uid").removeValue();
                 myref.child(item.getFriendId()).child("friends").child(uid).child("uid").removeValue();
+                saveData();
+                fragment.checkData();
             }
         });
 
@@ -71,6 +80,24 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.MyViewHold
     @Override
     public int getItemCount() {
         return list1.size();
+    }
+    public void saveData(){
+        SharedPreferences preferences = mcontext.getSharedPreferences("com.panshul.devspace.friends", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(list1);
+        editor.putString("friendList",json);
+        editor.apply();
+    }
+    public void loadData(){
+        SharedPreferences preferences = mcontext.getSharedPreferences("com.panshul.devspace.friends",Context.MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = preferences.getString("friendList","");
+        Type type = new TypeToken<ArrayList<FriendsModel>>() {}.getType();
+        list1 =gson.fromJson(json,type);
+        if(list1==null){
+            list1 =new ArrayList<>();
+        }
     }
 
 
