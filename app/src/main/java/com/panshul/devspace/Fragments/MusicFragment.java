@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,10 +63,10 @@ public class MusicFragment extends Fragment {
         dataEntered = pref.getString("dataEntered","false");
 
 
-
-        //addData();
-        //saveData();
         loadData();
+        addData();
+        saveData();
+
         adapter();
         saveData();
         return view;
@@ -92,10 +93,21 @@ public class MusicFragment extends Fragment {
         });
     }
     public void addData(){
-        playList.add(new PlaylistModel("Rap As a Poem", "efijnewufnhq", "Playlist by Panshul"));
-        playList.add(new PlaylistModel("Rap As a Poem", "efijnewufnhq", "Playlist by Panshul"));
-        playList.add(new PlaylistModel("Rap As a Poem", "efijnewufnhq", "Playlist by Panshul"));
-        playList.add(new PlaylistModel("Rap As a Poem", "efijnewufnhq", "Playlist by Panshul"));
+        if (playList.isEmpty()) {
+            playList.add(new PlaylistModel("Study Music 2021",
+                    "https://open.spotify.com/playlist/471N195f5jAVs086lzYglw?si=krfad_Y0QK6v89iMgnwPog",
+                    "Playlist by Naeleck"));
+            playList.add(new PlaylistModel("Relaxing Songs",
+                    "https://open.spotify.com/playlist/4D3hxAbOjVu5jaC5Bnlmky?si=MDSki9M5SCqA-z0hn6RRQw&nd=1",
+                    "Playlist by Iyssastreiner"));
+            playList.add(new PlaylistModel("Work From Home Hits",
+                    "https://open.spotify.com/playlist/37i9dQZF1DX6dlXjpHAMw3?si=FO0qAxdYSBamdmcwRaOG_A&nd=1",
+                    "Playlist by Spotify"));
+            playList.add(new PlaylistModel("White Noise For Study",
+                    "https://open.spotify.com/playlist/1WO1CAQq3FI6oeUkuXVW61?si=kKNb4UwOSsi7biSMkci04w&nd=1",
+                    "Playlist by Evan Newman"));
+        }
+
     }
     public void adapter(){
         SongsAdapter adapter = new SongsAdapter(view.getContext(),playList,MusicFragment.this);
@@ -110,10 +122,12 @@ public class MusicFragment extends Fragment {
         SharedPreferences.Editor editor = preferences.edit();
         Gson gson = new Gson();
         String json = gson.toJson(playList);
+        Log.i("String",json);
         editor.putString("songs",json);
         editor.apply();
     }
     public void loadData(){
+            String input = "";
             SharedPreferences preferences = view.getContext().getSharedPreferences("com.panshul.devspace.spotifyList", Context.MODE_PRIVATE);
             Gson gson = new Gson();
             String json = preferences.getString("songs", "");

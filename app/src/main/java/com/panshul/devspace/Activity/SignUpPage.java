@@ -30,7 +30,7 @@ public class SignUpPage extends AppCompatActivity {
     EditText name,emailId,phoneNumber,password;
     ImageView passwordView;
     Button signUp;
-    DatabaseReference myref;
+    DatabaseReference myref,myref1;
     FirebaseAuth mauth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +46,7 @@ public class SignUpPage extends AppCompatActivity {
         mauth = FirebaseAuth.getInstance();
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         myref = db.getReference("Users");
+        myref1 = db.getReference("Room");
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +68,9 @@ public class SignUpPage extends AppCompatActivity {
                                             myref.child(uid).child("uid").setValue(uid);
                                             myref.child(uid).child("fcm").setValue("null");
                                             myref.child(uid).child("points").setValue("0");
+                                            myref1.child(uid).child("uid").setValue(uid);
+                                            myref1.child(uid).child("friends").setValue("null");
+                                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                             startActivity(intent);
                                         }
                                         else {

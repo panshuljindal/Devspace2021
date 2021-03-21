@@ -1,6 +1,7 @@
 package com.panshul.devspace.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentActivity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,13 +13,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.panshul.devspace.Fragments.Dialog;
 import com.panshul.devspace.R;
 
 public class Profile_Page extends AppCompatActivity {
 
     TextView name,email,phone,uid,point;
     String name1,email1,phone1,uid1,point1;
-    ImageView back;
+    ImageView back,share;
     Button logout,reset;
     FirebaseAuth mauth;
     @Override
@@ -31,8 +33,9 @@ public class Profile_Page extends AppCompatActivity {
         point = findViewById(R.id.profilePointNum);
         uid = findViewById(R.id.profileUserCodeAns);
         back = findViewById(R.id.profileBackButton);
+        share=findViewById(R.id.profileShareImageView);
         logout = findViewById(R.id.profileLogoutButton);
-        reset = findViewById(R.id.profileChangePwdButton);
+       // reset = findViewById(R.id.profileChangePwdButton);
 
         mauth = FirebaseAuth.getInstance();
 
@@ -48,6 +51,26 @@ public class Profile_Page extends AppCompatActivity {
         phone.setText(phone1);
         point.setText(point1);
         uid.setText(uid1);
+
+
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //String app_url = " https://play.google.com/store/apps/details?id=com.adgvit.externals";
+                Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                String text = "Selfuel - A pomodoro app\n" +
+                        "\n" +
+                        "Optimize your work and increase productivity today.\n" +
+                        "Accept my invite and let's rock together\n" +
+                        "\n" +
+                        "Join now\n" +
+                        uid1;
+                shareIntent.putExtra(Intent.EXTRA_SUBJECT,"");
+                shareIntent.putExtra(android.content.Intent.EXTRA_TEXT,text);
+                v.getContext().startActivity(Intent.createChooser(shareIntent,"Share via"));
+            }
+        });
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +90,7 @@ public class Profile_Page extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
 
     }
     public void clearData(){
