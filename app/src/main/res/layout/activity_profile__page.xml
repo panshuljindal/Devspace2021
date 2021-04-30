@@ -10,7 +10,11 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -18,8 +22,8 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewPhoneNum"
-                android:layout_width="170dp"
-                android:layout_height="130dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="26dp"
@@ -49,15 +53,20 @@
 
                     <TextView
                         android:id="@+id/profilePhoneNumAns"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="3dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginBottom="20dp"
                         android:fontFamily="@font/inter_regular"
                         android:text="9818648222"
                         android:textColor="#FFFFFF"
                         android:textSize="15dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/profilePhoneNum" />
 
@@ -77,10 +86,10 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView2"
-                android:layout_width="175dp"
-                android:layout_height="140dp"
-                android:layout_marginStart="14dp"
-                android:layout_marginLeft="14dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginLeft="15dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
@@ -143,13 +152,14 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewEmail"
-                android:layout_width="175dp"
-                android:layout_height="151dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 app:cardBackgroundColor="#131313"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cardViewName"
                 app:layout_constraintTop_toBottomOf="@+id/cardViewPoints">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -173,15 +183,20 @@
 
                     <TextView
                         android:id="@+id/profileEmailAns"
-                        android:layout_width="145dp"
-                        android:layout_height="42dp"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="3dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginBottom="20dp"
                         android:fontFamily="@font/inter_regular"
                         android:text="panshuljindal@gmail.com"
                         android:textColor="#FFFFFF"
                         android:textSize="14dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/profileEmail" />
 
@@ -361,13 +376,13 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewName"
-                android:layout_width="170dp"
-                android:layout_height="130dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="14dp"
-                android:layout_marginRight="14dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginRight="15dp"
                 app:cardBackgroundColor="#131313"
                 app:layout_constraintEnd_toStartOf="@+id/cardViewEmail"
                 app:layout_constraintStart_toStartOf="parent"
@@ -380,28 +395,37 @@
 
                     <TextView
                         android:id="@+id/profileName"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="55dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginRight="12dp"
                         android:fontFamily="@font/inter_semibold"
                         android:text="Name"
                         android:textColor="#727272"
                         android:textSize="20dp"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/profileNameAns"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
                         android:layout_marginLeft="12dp"
                         android:layout_marginTop="3dp"
+                        android:layout_marginEnd="12dp"
+                        android:layout_marginRight="12dp"
+                        android:layout_marginBottom="20dp"
                         android:fontFamily="@font/inter_regular"
                         android:text="Panshul Jindal"
                         android:textColor="#FFFFFF"
                         android:textSize="15dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/profileName" />
 

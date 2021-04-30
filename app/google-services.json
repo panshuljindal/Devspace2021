@@ -1,15 +1,16 @@
 {
   "project_info": {
     "project_number": "498592523263",
+    "firebase_url": "https://productivity-app-24ab3-default-rtdb.firebaseio.com",
     "project_id": "productivity-app-24ab3",
     "storage_bucket": "productivity-app-24ab3.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:498592523263:android:0449a7c67c50f23f607dca",
+        "mobilesdk_app_id": "1:498592523263:android:d378bc1d21531404607dca",
         "android_client_info": {
-          "package_name": "com.panshul.devspace"
+          "package_name": "com.panshul.selfuel"
         }
       },
       "oauth_client": [
